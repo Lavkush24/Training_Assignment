@@ -4,8 +4,6 @@ using namespace std;
 #include<vector>
 
 
-
-
 /*
 Given an m x n matrix, return all elements of the matrix in spiral order.
 */
@@ -46,9 +44,6 @@ vector<int> spiralOrder(vector<vector<int>>& matrix) {
 
     return res;
 }
-
-
-
 
 
 
