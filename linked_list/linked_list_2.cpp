@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+#include<string>
 
 #include"MyList.h"
 
@@ -60,4 +61,76 @@ Node* addTwoNumbers(Node* l1, Node* l2) {
     }
 
     return sum;
+}
+
+
+
+
+/*
+Given the head of a linked list, rotate the list to the right by k places.
+*/
+
+void removeLastMakeHead(Node**head) {
+    Node *temp = *head;
+    Node *prev = NULL;
+    while(temp->next != NULL) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    prev->next = NULL;
+    temp->next = *head;
+    *head = temp;
+}
+
+
+int lengthOfList(Node* head) {
+    int c = 0;
+    Node *temp = head;
+    while(temp!= NULL) {
+        c++;
+        temp = temp->next;
+    }
+    return c;
+}
+
+Node* rotateRight(Node* head, int k) {
+
+
+    if(head == NULL || head->next == NULL) {
+        return head;
+    }
+
+    k = k % lengthOfList(head);
+    
+    while(k > 0) {
+        removeLastMakeHead(&head);
+        k--;
+    }
+    return head;
+}
+
+
+/*
+Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+*/
+Node* deleteDuplicates(Node* head) {
+    if(head == NULL || head->next == NULL) {
+        return head;
+    }
+        
+    Node* curr = head->next;
+    Node* prev = head;
+
+    while(curr != NULL) {
+        if(prev->val == curr->val) {
+            prev->next = curr->next;
+            curr = prev->next;
+        }
+        else {
+            prev = curr;
+            curr = curr->next;
+        }
+    }
+    return head;
 }
